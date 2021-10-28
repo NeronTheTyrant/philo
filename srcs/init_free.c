@@ -6,7 +6,7 @@
 /*   By: mlebard <mlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 22:50:21 by mlebard           #+#    #+#             */
-/*   Updated: 2021/10/19 23:49:06 by mlebard          ###   ########.fr       */
+/*   Updated: 2021/10/28 16:12:07 by mlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,6 @@ void	philo_free(t_table *table)
 	int		i;
 
 	i = 0;
-	while (i < table->philonum)
-	{
-		pthread_join(table->thread[i], NULL);
-		i++;
-	}
 	while (i < table->philonum)
 	{
 		pthread_mutex_destroy(&table->fork[i].mtx);

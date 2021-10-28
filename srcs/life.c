@@ -6,7 +6,7 @@
 /*   By: mlebard <mlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:03:32 by mlebard           #+#    #+#             */
-/*   Updated: 2021/10/26 21:35:22 by mlebard          ###   ########.fr       */
+/*   Updated: 2021/10/28 17:56:34 by mlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	philo_usleep(t_table *table, unsigned long int t)
 void	philo_think(t_philo *philo, t_table *table)
 {
 	philo_msg("is thinking", philo, table);
+	if (table->time_to_die - (gettime() - philo->last_meal) <= 15)
+		philo_usleep(table, 1);
+	else
+		philo_usleep(table, 10);
 }
 
 int	philo_eat(t_philo *philo, t_table *table)
