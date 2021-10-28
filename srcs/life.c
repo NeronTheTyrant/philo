@@ -6,7 +6,7 @@
 /*   By: mlebard <mlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:03:32 by mlebard           #+#    #+#             */
-/*   Updated: 2021/10/28 17:56:34 by mlebard          ###   ########.fr       */
+/*   Updated: 2021/10/28 19:46:06 by mlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ void	philo_usleep(t_table *table, unsigned long int t)
 	unsigned long int	time;
 	int					sig;
 
+/*	pthread_mutex_lock(&table->msg);
+	time = gettime() - table->start_time;
+	printf("%lums: %s %lu\n", time, "will sleep for", t);
+	pthread_mutex_unlock(&table->msg);*/
 	time = gettime() + t;
 	sig = 0;
 	while (gettime() < time && sig != SIG_TERM_DIE && sig != SIG_TERM_MEALS)
@@ -31,10 +35,13 @@ void	philo_usleep(t_table *table, unsigned long int t)
 void	philo_think(t_philo *philo, t_table *table)
 {
 	philo_msg("is thinking", philo, table);
-	if (table->time_to_die - (gettime() - philo->last_meal) <= 15)
-		philo_usleep(table, 1);
-	else
-		philo_usleep(table, 10);
+	if (table->philonum % 2 == 1)
+	{
+		if (table->time_to_die - (gettime() - philo->last_meal) <= 15)
+			philo_usleep(table, 1);
+		else
+			philo_usleep(table, 10);
+	}
 }
 
 int	philo_eat(t_philo *philo, t_table *table)

@@ -6,7 +6,7 @@
 /*   By: mlebard <mlebard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:00:48 by mlebard           #+#    #+#             */
-/*   Updated: 2021/10/28 18:31:30 by mlebard          ###   ########.fr       */
+/*   Updated: 2021/10/28 19:43:52 by mlebard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,13 @@ int	get_forks(t_philo *philo, t_table *table)
 			return (-1);
 		if (grab_fork(philo->right_fork) == 0)
 		{
-			usleep(1000);
+	//		usleep(1000);
 			continue ;
 		}
-/*		if (table->time_to_die - (gettime() - philo->last_meal) <= table->time_to_eat * 1.2)
-		{
-			philo_msg("has priority", philo, table);
-			while (1)
-			{
-				if (check_term(philo, table) == 1)
-					return (-1);
-				if (grab_fork(philo->left_fork) == 1)
-					break ;
-			}
-		}
-		else */if (grab_fork(philo->left_fork) == 0)
+		if (grab_fork(philo->left_fork) == 0)
 		{
 			drop_fork(philo->right_fork);
-			usleep(1000);
+	//		usleep(1000);
 			continue ;
 		}
 		break ;
